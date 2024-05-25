@@ -7,16 +7,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Cruise Control Optimization</h1>
-    <form id="routeForm">
-        <label for="start">Start:</label>
-        <input type="text" id="start" name="start" required>
-        <label for="end">End:</label>
-        <input type="text" id="end" name="end" required>
-        <button type="submit">Get Route</button>
-    </form>
-    <div id="map"></div>
+    <div class="taskbar">
+        <div class="logo">QruiseControl</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="https://github.com/abbasengineer/Qruise" target="_blank">GitHub</a>
+        </nav>
+    </div>
+    <div class="container">
+        <h1>Welcome to the Cruise Control Optimization App</h1>
+        <p>This application helps you optimize your driving routes by identifying segments suitable for cruise control based on road gradients and traffic conditions. Enter your start and end locations to get started!</p>
+        <form id="routeForm" class="form-group">
+            <label for="start">Start:</label>
+            <input type="text" id="start" name="start" required class="input-field">
+            <label for="end">End:</label>
+            <input type="text" id="end" name="end" required class="input-field">
+            <button type="submit" class="submit-btn">Get Route</button>
+        </form>
+        <div id="map"></div>
+    </div>
     <script src="script.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZ9C_y0e6FU0MijMXVx4VrXLGycma-jTE&libraries=places&callback=initMap">
+    </script>
+
 </body>
 </html>
-
