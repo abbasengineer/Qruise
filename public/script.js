@@ -1,3 +1,5 @@
+let map, startAutocomplete, endAutocomplete;
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 37.3977, lng: -122.4477},
@@ -7,16 +9,23 @@ function initMap() {
     var directionsRenderer = new google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map);
 
-    // Initialize the Autocomplete functionality for the input fields
-    startAutocomplete = new google.maps.places.Autocomplete(document.getElementById('start'));
-    endAutocomplete = new google.maps.places.Autocomplete(document.getElementById('end'));
-
+   initAutocomplete();
 
     document.getElementById('routeForm').addEventListener('submit', function(e) {
         e.preventDefault();
         calculateAndDisplayRoute(directionsService, directionsRenderer, map);
     });
 
+}
+
+function initAutocomplete() {
+    try {
+        startAutocomplete = new google.maps.places.Autocomplete(document.getElementById('start'));
+        endAutocomplete = new google.maps.places.Autocomplete(document.getElementById('end'));
+        console.log('Autocomplete initialized successfully.');
+    } catch (error) {
+        console.error('Error initializing Autocomplete:', error);
+    }
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer, map) {
@@ -170,7 +179,7 @@ function fetchTrafficData(path) {
 // Load the map script dynamically
 function loadScript() {
     var script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDaC4s3RN5CYycmqCjnQMUAGrgbd9A9EuU&callback=initMap`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDaC4s3RN5CYycmqCjnQMUAGrgbd9A9EuU&libraries=places&callback=initMap`;
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
