@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const axios = require('axios'); // Added axios for making API requests
@@ -14,7 +15,7 @@ app.get('/', (req, res) => {
 // Added endpoint to get elevation data
 app.post('/getElevation', async (req, res) => {
     const { path } = req.body;
-    const API_KEY = 'AIzaSyAZ9C_y0e6FU0MijMXVx4VrXLGycma-jTE';
+    const API_KEY = process.env.GOOGLE_MAPS_API_KEY; // Use environment variable for API key;
     try {
         const response = await axios.get(`https://maps.googleapis.com/maps/api/elevation/json`, {
             params: {
@@ -31,7 +32,7 @@ app.post('/getElevation', async (req, res) => {
 // Added endpoint to get traffic data
 app.post('/getTraffic', async (req, res) => {
     const { path } = req.body;
-    const API_KEY = 'AIzaSyAZ9C_y0e6FU0MijMXVx4VrXLGycma-jTE';
+    const API_KEY = process.env.GOOGLE_MAPS_API_KEY; // Use environment variable for API key;
     try {
         const response = await axios.get(`https://maps.googleapis.com/maps/api/directions/json`, {
             params: {
